@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Perpustakaan Karya Ilmiah</title>
+    <!--OG-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=Merriweather:wght@700;900&amp;family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #f7f3ea;
+        --card: #fff;
+        --ink: #14202b;
+        --mut: #5d6b78;
+        --navy: #0f2a3d;
+        --gold: #e0a03a;
+        --line: #e5dfd0;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #0b1620;
+          --card: #13222f;
+          --ink: #eef2f5;
+          --mut: #9fb0be;
+          --navy: #1b4561;
+          --line: #223545;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #0b1620;
+        --card: #13222f;
+        --ink: #eef2f5;
+        --mut: #9fb0be;
+        --navy: #1b4561;
+        --line: #223545;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          16px/1.6 "Plus Jakarta Sans",
+          system-ui,
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        transition: background 0.4s;
+      }
+      body.dk {
+        background: #0f2a3d;
+      }
+      h1,
+      h2,
+      h3,
+      .ser {
+        font-family: "Merriweather", Georgia, serif;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+        color: inherit;
+      }
+      button {
+        cursor: pointer;
+        border: 0;
+        background: none;
+      }
+      @keyframes f {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+      }
+      #app > * {
+        animation: f 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+      .w {
+        max-width: 920px;
+        margin: auto;
+        padding: 0 18px 56px;
+      }
+      .btn {
+        background: var(--gold);
+        color: #0f2a3d;
+        font-weight: 700;
+        padding: 14px 28px;
+        border-radius: 99px;
+        transition: 0.25s;
+        box-shadow: 0 8px 24px -10px rgba(224, 160, 58, 0.8);
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .btn.sm {
+        padding: 10px 20px;
+      }
+      .gh {
+        padding: 8px 14px;
+        border-radius: 99px;
+        border: 1px solid var(--line);
+        font-size: 14px;
+        font-weight: 600;
+        background: var(--card);
+        transition: 0.2s;
+      }
+      .gh:hover {
+        border-color: var(--gold);
+      }
+      .dg {
+        color: #c0392b;
+      }
+      .ab {
+        background: #0c2232;
+        color: #f6efe0;
+        padding: 9px 14px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+        font-size: 13px;
+      }
+      .ab button {
+        background: rgba(255, 255, 255, 0.13);
+        padding: 6px 12px;
+        border-radius: 99px;
+        transition: 0.2s;
+        color: #f6efe0;
+      }
+      .ab button:hover {
+        background: var(--gold);
+        color: #0f2a3d;
+      }
+      .ab b {
+        color: var(--gold);
+        margin-right: auto;
+      }
+      .land {
+        min-height: 90svh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 40px 24px;
+        color: #f6efe0;
+        background:
+          radial-gradient(circle at 20% 0, #1d4a66, transparent 55%),
+          radial-gradient(circle at 90% 100%, #2a3d2f55, transparent 50%);
+      }
+      .land h1 {
+        font-size: clamp(28px, 8vw, 50px);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 1.2;
+      }
+      .land h2 {
+        font-size: 18px;
+        color: var(--gold);
+        margin: 4px 0 12px;
+      }
+      .land .d {
+        max-width: 460px;
+        opacity: 0.85;
+      }
+      .land .btn {
+        margin-top: 28px;
+      }
+      .rule {
+        width: 180px;
+        height: 2px;
+        margin: 12px auto;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+      }
+      .bis {
+        color: var(--gold);
+        font-size: 22px;
+        margin-bottom: 12px;
+        font-family: "Amiri", serif;
+      }
+      .ay {
+        font-family: "Amiri", "Noto Naskh Arabic", serif;
+        line-height: 2.1;
+        margin-bottom: 14px;
+      }
+      .land .ay {
+        font-size: clamp(18px, 5vw, 26px);
+        color: #f6efe0;
+        max-width: 560px;
+        text-align: center;
+      }
+      .hl .ay {
+        font-size: 15px;
+        color: #1f4b6b;
+        margin-bottom: 8px;
+      }
+      .ph {
+        width: 180px;
+        aspect-ratio: 4/5;
+        border-radius: 100px 100px 22px 22px;
+        border: 3px solid var(--gold);
+        overflow: hidden;
+        margin-bottom: 24px;
+        box-shadow: 0 20px 50px -20px #000a;
+        background: #1d4a66;
+      }
+      .ph img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .ph span {
+        display: grid;
+        place-items: center;
+        height: 100%;
+        font:
+          900 64px "Merriweather",
+          serif;
+        color: var(--gold);
+      }
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 18px 0;
+      }
+      .top h2 {
+        font-size: 22px;
+        line-height: 1.2;
+      }
+      .top small {
+        color: var(--mut);
+      }
+      .card {
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 14px 40px -18px rgba(15, 42, 61, 0.5);
+        border: 1px solid var(--line);
+      }
+      .hero {
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+        background: linear-gradient(135deg, #fbf6e9, #f1e7cf);
+        color: #14202b;
+        padding: 24px 20px 0;
+      }
+      .hl {
+        flex: 1;
+        padding-bottom: 24px;
+        align-self: center;
+      }
+      .hl h1 {
+        font-size: clamp(22px, 6.5vw, 34px);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #1f4b6b;
+        line-height: 1.2;
+      }
+      .hl h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+      .hl p {
+        font-size: 13px;
+        color: #445;
+      }
+      .hl .rule {
+        margin: 10px 0;
+        width: 100%;
+      }
+      .hero .ph {
+        width: 36%;
+        max-width: 200px;
+        border: 0;
+        border-radius: 16px 16px 0 0;
+        margin: 0;
+        box-shadow: none;
+        background: #e8dcc0;
+      }
+      .hero .ph span {
+        font-size: 48px;
+      }
+      .cg {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        background: #0f2a3d;
+      }
+      .ct {
+        color: #fff;
+        padding: 16px 3px;
+        font-size: 10.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+        border: 0.5px solid rgba(255, 255, 255, 0.09);
+        transition: 0.25s;
+        line-height: 1.25;
+        text-align: center;
+      }
+      .ct span {
+        font-size: 22px;
+        filter: grayscale(1) brightness(1.9);
+        transition: 0.25s;
+      }
+      .ct:hover {
+        background: #16384f;
+      }
+      .ct.on {
+        background: var(--gold);
+        color: #0f2a3d;
+      }
+      .ct.on span {
+        filter: none;
+      }
+      @media (min-width: 640px) {
+        .ct {
+          font-size: 12.5px;
+          padding: 20px 6px;
+        }
+        .hero {
+          padding: 34px 34px 0;
+        }
+      }
+      .sh {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 10px;
+        margin: 34px 0 16px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 14px;
+      }
+      .sh h2 {
+        font-size: 19px;
+        text-transform: uppercase;
+      }
+      .sh h2:before {
+        content: "◆ ";
+        color: var(--gold);
+      }
+      .sh span {
+        color: var(--mut);
+        font-size: 13px;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        margin-top: 5px;
+        padding: 11px 13px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: var(--bg);
+        transition: 0.2s;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: 0;
+        border-color: var(--gold);
+      }
+      #q {
+        margin: 0 0 16px;
+        background: var(--card);
+      }
+      .pc {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 22px;
+        margin-bottom: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .pc:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 34px -20px rgba(15, 42, 61, 0.5);
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 12px;
+        align-items: center;
+        font-size: 13px;
+        color: var(--mut);
+      }
+      .bd {
+        background: var(--navy);
+        color: #fff;
+        border-radius: 10px;
+        padding: 4px 12px;
+        font-weight: 600;
+      }
+      .pc h3 {
+        font-size: 20px;
+        line-height: 1.35;
+        margin: 12px 0 8px;
+      }
+      .pc p {
+        color: var(--mut);
+      }
+      .more {
+        font-weight: 700;
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+      }
+      .empty {
+        text-align: center;
+        color: var(--mut);
+        padding: 40px 10px;
+      }
+      .rd {
+        max-width: 720px;
+        margin: auto;
+        padding: 22px 18px 60px;
+      }
+      .rd h1 {
+        font-size: 28px;
+        line-height: 1.3;
+        margin: 14px 0;
+      }
+      .rd .row {
+        justify-content: flex-start;
+        margin: 0 0 20px;
+      }
+      .body p {
+        margin: 0 0 1.1em;
+        font-size: 17px;
+        line-height: 1.85;
+      }
+      .body h3 {
+        margin: 1.6em 0 0.6em;
+        font-size: 20px;
+      }
+      #modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        background: rgba(8, 20, 30, 0.6);
+        backdrop-filter: blur(4px);
+        padding: max(14px, env(safe-area-inset-top, 0px)) 14px
+          max(14px, env(safe-area-inset-bottom, 0px));
+      }
+      #modal.o {
+        display: flex;
+      }
+      .mb {
+        background: var(--card);
+        width: 100%;
+        max-width: 560px;
+        margin: auto;
+        border-radius: 22px;
+        padding: 22px;
+        max-height: 88dvh;
+        overflow: auto;
+        animation: f 0.3s;
+      }
+      label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 12px;
+      }
+      label small {
+        font-weight: 400;
+        color: var(--mut);
+      }
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-top: 18px;
+      }
+      #toast {
+        position: fixed;
+        left: 50%;
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        transform: translate(-50%, 20px);
+        background: #0f2a3d;
+        color: #fff;
+        padding: 10px 18px;
+        border-radius: 99px;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s;
+        font-size: 14px;
+      }
+      #toast.o {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+      .ft {
+        text-align: center;
+        padding: 0 0 28px;
+      }
+      .ft button {
+        font-size: 12px;
+        opacity: 0.45;
+        color: var(--ink);
+      }
+      .dk .ft button {
+        color: #f6efe0;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      a.gh,
+      a.btn {
+        display: inline-block;
+      }
+      .ar {
+        font-family: "Amiri", "Noto Naskh Arabic", serif;
+        font-size: 1.3em;
+        line-height: 2;
+      }
+      sup {
+        font-size: 0.7em;
+        color: var(--gold);
+        font-weight: 700;
+      }
+      .ref {
+        margin-top: 34px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+        font-size: 15px;
+      }
+      .ref h4 {
+        font-family: "Merriweather", serif;
+        margin-bottom: 10px;
+      }
+      .ref ol {
+        padding-left: 1.4em;
+      }
+      .ref li {
+        margin-bottom: 8px;
+      }
+      .pus {
+        list-style: none;
+        padding: 0;
+      }
+      .pus li {
+        padding-left: 2em;
+        text-indent: -2em;
+      }
+      .fb {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 14px 16px;
+        margin-bottom: 22px;
+        flex-wrap: wrap;
+      }
+      .fi {
+        font-size: 30px;
+      }
+      .fm {
+        flex: 1;
+        min-width: 140px;
+        display: flex;
+        flex-direction: column;
+        word-break: break-word;
+      }
+      .fm small {
+        color: var(--mut);
+      }
+    </style>
+  </head>
+  <body class="">
+    <div id="app"></div>
+    <div id="modal" class=""></div>
+    <div id="toast" class=""></div>
+    <script type="application/json" id="state">
+      { "p": { "n": "", "t": "", "d": "", "ph": "" }, "c": [], "a": [] }
+    </script>
+    <script>
+      const $ = (s) => document.querySelector(s),
+        E = (s) =>
+          String(s ?? "").replace(
+            /[&<>"]/g,
+            (c) =>
+              ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c],
+          ),
+        S = JSON.parse($("#state").textContent);
+      let A = null,
+        adm = false,
+        pv = false,
+        NP = null,
+        V = { p: "land", c: -1, q: "", id: 0 };
+      try {
+        if (sessionStorage.getItem("in")) V.p = "home";
+      } catch (_) {}
+      const AY =
+          "مَا كَانَ مُحَمَّدٌ أَبَا أَحَدٍ مِّن رِّجَالِكُمْ وَلَٰكِن رَّسُولَ اللَّهِ وَخَاتَمَ النَّبِيِّينَ ۗ وَكَانَ اللَّهُ بِكُلِّ شَيْءٍ عَلِيمًا",
+        ay = () => S.p.ay ?? AY,
+        isA = () => adm && !pv,
+        vis = (p) => isA() || p.st !== "draf",
+        fd = (d) =>
+          new Date(d + "T00:00").toLocaleDateString("id-ID", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          }),
+        rt = (b) => Math.max(1, Math.round(b.split(/\s+/).length / 200)),
+        pic = () =>
+          S.p.ph
+            ? `<img src="${E(S.p.ph)}" alt="">`
+            : `<span>${E([...S.p.n][0] || "?")}</span>`,
+        toast = (m) => {
+          const t = $("#toast");
+          t.textContent = m;
+          t.className = "o";
+          clearTimeout(toast.h);
+          toast.h = setTimeout(() => (t.className = ""), 2600);
+        },
+        M = (h) => {
+          const m = $("#modal");
+          m.innerHTML = h ? `<div class="mb">${h}</div>` : "";
+          m.className = h ? "o" : "";
+        },
+        bar = () =>
+          adm
+            ? `<div class="ab"><b>${pv ? "Pratinjau Tamu" : "Mode Admin"}</b>${isA() ? `<button data-a="new">＋ Tulisan</button><button data-a="cats">Kategori</button><button data-a="prof">Profil</button>` : ""}<button data-a="pv">${pv ? "Kembali ke Admin" : "Lihat sebagai Tamu"}</button><button data-a="out">Keluar</button></div>`
+            : "",
+        land = () =>
+          `${bar()}<section class="land"><div class="ph">${pic()}</div><p class="bis">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p><p class="ay">${E(ay())}</p><h1>${E(S.p.n)}</h1><div class="rule"></div><h2>${E(S.p.t)}</h2><p class="d">${E(S.p.d)}</p><button class="btn" data-a="enter">Masuk ke Perpustakaan →</button></section>`,
+        meta = (p) =>
+          `<div class="meta">${p.st === "draf" ? '<span class="bd" style="background:#c0392b">DRAF</span>' : ""}<span class="bd">${E(p.c)}</span><span>${E(p.k)}</span>${p.au ? `<span>✍ ${E(p.au)}</span>` : ""}<span>${fd(p.d)}</span><span>${rt(p.b)} menit baca</span>${p.f ? "<span>📎 Berkas</span>" : ""}</div>`,
+        lst = () => {
+          const c = S.c[V.c]?.n,
+            q = V.q.toLowerCase(),
+            r = S.a
+              .filter(
+                (p) =>
+                  vis(p) &&
+                  (!c || p.c === c) &&
+                  (!q || (p.t + p.s + p.b).toLowerCase().includes(q)),
+              )
+              .sort((a, b) => b.d.localeCompare(a.d) || b.id - a.id);
+          return r.length
+            ? r
+                .map(
+                  (p) =>
+                    `<article class="pc" data-a="read" data-v="${p.id}">${meta(p)}<h3>${E(p.t)}</h3><p>${E(p.s)}</p><div class="more">Baca Selengkapnya →</div></article>`,
+                )
+                .join("")
+            : `<div class="empty">Belum ada tulisan${isA() ? ". Klik ＋ Tulisan untuk mulai." : "."}</div>`;
+        },
+        home =
+          () => `${bar()}<div class="w"><div class="top"><div><h2 class="ser">${E(S.p.n)}</h2><small>${E(S.p.t)}</small></div><button class="gh" data-a="land">‹ Profil</button></div>
+<div class="card"><div class="hero"><div class="hl"><p class="bis" style="font-size:18px">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p><p class="ay">${E(ay())}</p><h1>${E(S.p.n)}</h1><div class="rule"></div><h3 class="ser">${E(S.p.t)}</h3><p>${E(S.p.d)}</p></div><div class="ph">${pic()}</div></div>
+<div class="cg">${S.c.map((c, i) => `<button class="ct ${V.c === i ? "on" : ""}" data-a="cat" data-v="${i}"><span>${E(c.i)}</span>${E(c.n)}</button>`).join("")}</div></div>
+<div class="sh"><h2 class="ser">${V.c >= 0 ? E(S.c[V.c].n) : "Kajian Terbaru"}</h2><span>${S.a.filter(vis).length} tulisan</span></div>
+<input id="q" placeholder="Cari judul atau isi tulisan…" value="${E(V.q)}"><div id="list">${lst()}</div></div>`,
+        ar = (h) =>
+          h.replace(
+            /[\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]+(?:[\s،؛؟]+[\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]+)*/g,
+            (m) => `<span class="ar">${m}</span>`,
+          ),
+        sz = (z) =>
+          z > 1e6 ? (z / 1e6).toFixed(1) + " MB" : Math.round(z / 1e3) + " KB",
+        fu = (f) => "/files/" + f.id + "/" + encodeURIComponent(f.n),
+        fb = (p) =>
+          p.f
+            ? `<div class="fb"><div class="fi">${/\.pdf$/i.test(p.f.n) ? "📕" : "📄"}</div><div class="fm"><b>${E(p.f.n)}</b><small>Berkas asli · ${sz(p.f.z)}</small></div>${/\.pdf$/i.test(p.f.n) ? `<a class="gh" target="_blank" href="${fu(p.f)}?view=1">Lihat</a>` : ""}<a class="btn sm" href="${fu(p.f)}">Unduh</a></div>`
+            : "",
+        bd = (b) =>
+          b
+            .split(/\n\s*\n/)
+            .map((x) =>
+              x.startsWith("## ")
+                ? `<h3 class="ser" dir="auto">${ar(E(x.slice(3)))}</h3>`
+                : `<p dir="auto">${ar(
+                    E(x)
+                      .replace(/\[\^(\d+)\]/g, "<sup>$1</sup>")
+                      .replace(/\n/g, "<br>"),
+                  )}</p>`,
+            )
+            .join(""),
+        ls = (t) =>
+          (t || "")
+            .split("\n")
+            .map((x) => x.trim())
+            .filter(Boolean),
+        read = () => {
+          const p = S.a.find((x) => x.id === V.id);
+          if (!p || !vis(p)) return home();
+          const N = ls(p.fn),
+            L = ls(p.rf);
+          return `${bar()}<div class="rd"><button class="gh" data-a="back">← Kembali</button><div style="height:18px"></div>${meta(p)}<h1 dir="auto">${E(p.t)}</h1><div class="row"><button class="gh" data-a="cp">🔗 Salin link</button><a class="gh" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(p.t + " " + location.href)}">WhatsApp</a>${isA() ? `<button class="gh" data-a="edit" data-v="${p.id}">✎ Edit</button><button class="gh dg" data-a="del" data-v="${p.id}">Hapus</button>` : ""}</div>${fb(p)}<div class="body">${bd(p.b)}</div>${N.length ? `<div class="ref"><h4>Catatan Kaki</h4><ol>${N.map((l) => `<li dir="auto">${ar(E(l))}</li>`).join("")}</ol></div>` : ""}${L.length ? `<div class="ref"><h4>Daftar Pustaka</h4><ul class="pus">${L.map((l) => `<li dir="auto">${ar(E(l))}</li>`).join("")}</ul></div>` : ""}</div>`;
+        },
+        R = () => {
+          document.body.className = V.p === "land" ? "dk" : "";
+          $("#app").innerHTML =
+            V.p === "land" ? land() : V.p === "read" ? read() : home();
+          if (!adm)
+            $("#app").insertAdjacentHTML(
+              "beforeend",
+              '<div class="ft"><button data-a="lg">Admin</button></div>',
+            );
+        },
+        go = (p, x = {}) => {
+          Object.assign(V, x, { p });
+          try {
+            p === "land"
+              ? sessionStorage.removeItem("in")
+              : sessionStorage.setItem("in", "1");
+          } catch (_) {}
+          try {
+            history.pushState(null, "", p === "read" ? "/t/" + V.id : "/");
+          } catch (_) {}
+          scrollTo(0, 0);
+          R();
+        };
+      function pf(id) {
+        const p = S.a.find((x) => x.id == id) || {
+          t: "",
+          au: "",
+          c: "",
+          k: "Makalah",
+          st: "terbit",
+          s: "",
+          b: "",
+          fn: "",
+          rf: "",
+        };
+        const o = (a, v) =>
+          a
+            .map((x) => `<option ${x === v ? "selected" : ""}>${E(x)}</option>`)
+            .join("");
+        M(
+          `<h3 class="ser">${id ? "Edit Tulisan" : "Tulisan Baru"}</h3><label>Judul<input id="ft" value="${E(p.t)}"></label><div class="two"><label>Penulis<input id="fau" value="${E(p.au)}"></label><label>Status<select id="fst"><option value="terbit" ${p.st !== "draf" ? "selected" : ""}>Terbit</option><option value="draf" ${p.st === "draf" ? "selected" : ""}>Draf (disembunyikan)</option></select></label></div><div class="two"><label>Kategori<select id="fc">${o(
+            S.c.map((c) => c.n),
+            p.c,
+          )}</select></label><label>Jenis<select id="fk">${o(["Makalah", "Jurnal", "Tafsir", "Kajian", "Artikel"], p.k)}</select></label></div><label>Ringkasan<textarea id="fs" rows="2">${E(p.s)}</textarea></label><label>Berkas asli <small>(PDF, Word, PowerPoint, Excel; maks 50 MB)</small><input id="ff" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.odt,.txt"></label>${p.f ? `<label style="font-weight:400">Berkas saat ini: ${E(p.f.n)} <input id="fdel" type="checkbox" style="width:auto;margin-left:8px"> hapus</label>` : ""}<label>Isi tulisan <small>(paragraf dipisah baris kosong; "## " subjudul; [^1] penanda catatan kaki)</small><textarea id="fb" rows="9" dir="auto">${E(p.b)}</textarea></label><label>Catatan kaki <small>(satu baris = satu catatan, berurutan)</small><textarea id="ffn" rows="3" dir="auto">${E(p.fn)}</textarea></label><label>Daftar pustaka <small>(satu baris per sumber)</small><textarea id="frf" rows="4" dir="auto">${E(p.rf)}</textarea></label><div class="row"><button class="gh" data-a="x">Batal</button><button class="btn sm" data-a="sp" data-v="${id || 0}">Simpan</button></div>`,
+        );
+      }
+      async function sp(v) {
+        const t = $("#ft").value.trim();
+        if (!t) return toast("Judul wajib diisi");
+        const old = v ? S.a.find((x) => x.id == v) : null,
+          o = {
+            t,
+            au: $("#fau").value.trim(),
+            c: $("#fc").value,
+            k: $("#fk").value,
+            st: $("#fst").value,
+            s: $("#fs").value,
+            b: $("#fb").value,
+            fn: $("#ffn").value,
+            rf: $("#frf").value,
+            f: old?.f,
+          };
+        if ($("#fdel")?.checked) o.f = undefined;
+        const fl = $("#ff").files[0];
+        if (fl) {
+          if (fl.size > 5e7) return toast("Ukuran file maksimal 50 MB");
+          toast("Mengunggah berkas…");
+          try {
+            o.f = await up(fl);
+          } catch (e) {
+            return toast(
+              e == 400 ? "Jenis file tidak didukung" : "Gagal mengunggah",
+            );
+          }
+        }
+        if (old) Object.assign(old, o);
+        else
+          S.a.push({
+            id: Date.now(),
+            d: new Date().toISOString().slice(0, 10),
+            ...o,
+          });
+        pub();
+      }
+      function pr() {
+        NP = null;
+        M(
+          `<h3 class="ser">Edit Profil</h3><div style="display:flex;gap:14px;align-items:center;margin-top:12px"><img id="pp" ${S.p.ph ? `src="${E(S.p.ph)}"` : ""} alt="" style="width:72px;height:72px;border-radius:50%;object-fit:cover;background:var(--line)"><label style="margin:0;flex:1">Foto profil<input id="pf" type="file" accept="image/*"></label></div><label>Nama<input id="pn" value="${E(S.p.n)}"></label><label>Tagline<input id="pt" value="${E(S.p.t)}"></label><label>Ayat di bawah basmalah<textarea id="pa" rows="3" style="direction:rtl;font-family:'Amiri',serif;font-size:18px">${E(ay())}</textarea></label><label>Deskripsi<textarea id="pd" rows="4">${E(S.p.d)}</textarea></label><div class="row"><button class="gh" data-a="x">Batal</button><button class="btn sm" data-a="sr">Simpan</button></div>`,
+        );
+      }
+      function ct() {
+        M(
+          `<h3 class="ser">Kelola Kategori</h3><label>Satu kategori per baris <small>(emoji lalu nama)</small><textarea id="cl" rows="11">${E(S.c.map((c) => c.i + " " + c.n).join("\n"))}</textarea></label><div class="row"><button class="gh" data-a="x">Batal</button><button class="btn sm" data-a="sc">Simpan</button></div>`,
+        );
+      }
+      function img(f, cb) {
+        const r = new FileReader();
+        r.onload = () => {
+          const i = new Image();
+          i.onload = () => {
+            const s = Math.min(1, 520 / Math.max(i.width, i.height)),
+              c = document.createElement("canvas");
+            c.width = i.width * s;
+            c.height = i.height * s;
+            c.getContext("2d").drawImage(i, 0, 0, c.width, c.height);
+            cb(c.toDataURL("image/jpeg", 0.82));
+          };
+          i.src = r.result;
+        };
+        r.readAsDataURL(f);
+      }
+      async function pub() {
+        M();
+        toast("Menyimpan…");
+        try {
+          const r = await fetch("/api/state", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(S),
+          });
+          if (r.status === 401) {
+            adm = false;
+            R();
+            return toast("Sesi habis, silakan login ulang");
+          }
+          if (!r.ok) throw 0;
+          toast("Tersimpan ✓");
+          R();
+        } catch (e) {
+          toast("Gagal menyimpan");
+        }
+      }
+      document.addEventListener("click", (e) => {
+        if (e.target.id === "modal") return M();
+        const t = e.target.closest("[data-a]");
+        if (!t) return;
+        const a = t.dataset.a,
+          v = t.dataset.v;
+        ({
+          enter: () => go("home"),
+          land: () => go("land"),
+          back: () => go("home"),
+          cat: () => {
+            V.c = V.c == v ? -1 : +v;
+            R();
+          },
+          read: () => go("read", { id: +v }),
+          pv: () => {
+            pv = !pv;
+            R();
+          },
+          lg: () =>
+            M(
+              `<h3 class="ser">Masuk Admin</h3><label>Password<input id="lp" type="password" autocomplete="current-password"></label><div class="row"><button class="gh" data-a="x">Batal</button><button class="btn sm" data-a="dl">Masuk</button></div>`,
+            ),
+          dl: async () => {
+            const r = await fetch("/api/login", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ password: $("#lp").value }),
+            });
+            if (r.ok) {
+              adm = true;
+              M();
+              await load();
+              R();
+              toast("Masuk sebagai admin");
+            } else
+              toast(
+                r.status == 429 ? "Terlalu banyak percobaan" : "Password salah",
+              );
+          },
+          out: async () => {
+            await fetch("/api/logout", { method: "POST" });
+            adm = false;
+            pv = false;
+            await load();
+            R();
+          },
+          new: () => pf(0),
+          edit: () => pf(v),
+          prof: pr,
+          cats: ct,
+          x: () => M(),
+          del: () =>
+            M(
+              `<h3 class="ser">Hapus tulisan?</h3><p style="margin-top:8px;color:var(--mut)">Tulisan akan dihapus permanen.</p><div class="row"><button class="gh" data-a="x">Batal</button><button class="btn sm" data-a="sd" data-v="${v}" style="background:#c0392b;color:#fff">Hapus</button></div>`,
+            ),
+          cp: () =>
+            navigator.clipboard.writeText(location.href).then(
+              () => toast("Link disalin"),
+              () => toast(location.href),
+            ),
+          sd: () => {
+            S.a = S.a.filter((p) => p.id != v);
+            V.p = "home";
+            try {
+              history.replaceState(null, "", "/");
+            } catch (_) {}
+            pub();
+          },
+          sp: () => sp(+v),
+          sr: () => {
+            S.p = {
+              n: $("#pn").value.trim() || "Nama Anda",
+              t: $("#pt").value,
+              d: $("#pd").value,
+              ay: $("#pa").value,
+              ph: NP || S.p.ph,
+            };
+            pub();
+          },
+          sc: () => {
+            S.c = $("#cl")
+              .value.split("\n")
+              .map((l) => l.trim())
+              .filter(Boolean)
+              .map((l) => {
+                const m = l.match(/^(\S+)\s+(.+)$/);
+                return m && /^\p{Extended_Pictographic}/u.test(m[1])
+                  ? { i: m[1], n: m[2] }
+                  : { i: "📄", n: l };
+              });
+            V.c = -1;
+            pub();
+          },
+        })[a]?.();
+      });
+      document.addEventListener("input", (e) => {
+        if (e.target.id === "q") {
+          V.q = e.target.value;
+          $("#list").innerHTML = lst();
+        }
+      });
+      document.addEventListener("change", (e) => {
+        if (e.target.id === "pf" && e.target.files[0])
+          img(e.target.files[0], (u) => {
+            NP = u;
+            $("#pp").src = u;
+          });
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && e.target.id === "lp") $("[data-a=dl]").click();
+      });
+      const pid = () => +(location.pathname.match(/^\/t\/(\d+)/) || [])[1] || 0;
+      async function load() {
+        try {
+          Object.assign(S, await (await fetch("/api/state")).json());
+        } catch (_) {}
+      }
+      async function up(f) {
+        const r = await fetch("/api/upload?n=" + encodeURIComponent(f.name), {
+          method: "POST",
+          headers: { "Content-Type": "application/octet-stream" },
+          body: f,
+        });
+        if (!r.ok) throw r.status;
+        return r.json();
+      }
+      addEventListener("popstate", () => {
+        const i = pid();
+        if (i) {
+          V.p = "read";
+          V.id = i;
+        } else if (V.p === "read") V.p = "home";
+        R();
+      });
+      (async () => {
+        await load();
+        try {
+          adm = !!(await (await fetch("/api/me")).json()).admin;
+        } catch (_) {}
+        const i = pid();
+        if (i) {
+          V.p = "read";
+          V.id = i;
+        }
+        R();
+      })();
+    </script>
+  </body>
+</html>
